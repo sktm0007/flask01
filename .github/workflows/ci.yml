@@ -1,0 +1,31 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main  # Trigger the workflow when code is pushed to the 'main' branch
+  pull_request:
+    branches:
+      - main  # Also trigger the workflow for pull requests targeting 'main' branch
+
+jobs:
+  test:
+    runs-on: ubuntu-latest  # Use the latest Ubuntu for the CI environment
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2  # Checkout the repository's code
+
+    - name: Set up Python
+      uses: actions/setup-python@v2  # Set up Python for the environment
+      with:
+        python-version: 3.8  # Specify the version of Python to use
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip  # Upgrade pip
+        pip install -r requirements.txt  # Install dependencies from requirements.txt
+
+    - name: Run Unit Tests
+      run: |
+        python -m unittest discover tests/  # Discover and run all tests in the 'tests' directory
