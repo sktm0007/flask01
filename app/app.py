@@ -11,6 +11,10 @@ app = Flask(__name__)
 MONGODB_USERNAME = os.getenv('MONGODB_USERNAME')
 MONGODB_PASSWORD = os.getenv('MONGODB_PASSWORD')
 
+# Print debug information
+print(f"Initializing Flask app with MongoDB credentials: {MONGODB_USERNAME}, {MONGODB_PASSWORD}")
+
+
 # Connection to database
 
 # assignment 2
